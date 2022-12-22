@@ -1,11 +1,10 @@
-package simulation.domain.states.vulnerable_states;
+package simulation.src.domain.states.vulnerable_states;
 
-import simulation.Draw;
-import simulation.domain.Individual;
-import simulation.domain.IndividualState;
-import simulation.domain.states.InvulnerableIndividual;
-import simulation.domain.states.vulnerable_states.infected_states.SymptomaticIndividual;
-import simulation.domain.states.vulnerable_states.infected_states.SymptomlessIndividual;
+import simulation.src.Draw;
+import simulation.src.domain.Individual;
+import simulation.src.domain.IndividualState;
+import simulation.src.domain.states.vulnerable_states.infected_states.SymptomaticIndividual;
+import simulation.src.domain.states.vulnerable_states.infected_states.SymptomlessIndividual;
 
 import java.util.Collection;
 

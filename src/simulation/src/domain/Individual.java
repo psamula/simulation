@@ -1,7 +1,6 @@
-package simulation.domain;
+package simulation.src.domain;
 
-import simulation.domain.states.VulnerableIndividual;
-import simulation.domain.states.vulnerable_states.infected_states.SymptomlessIndividual;
+import simulation.src.domain.states.VulnerableIndividual;
 
 import java.util.Collection;
 

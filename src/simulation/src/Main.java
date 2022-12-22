@@ -1,4 +1,4 @@
-package simulation;
+package simulation.src;
 
 public class Main {
     public static void main(String[] args) {

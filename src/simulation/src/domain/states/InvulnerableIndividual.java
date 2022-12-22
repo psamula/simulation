@@ -1,7 +1,7 @@
-package simulation.domain.states;
+package simulation.src.domain.states;
 
-import simulation.domain.Individual;
-import simulation.domain.IndividualState;
+import simulation.src.domain.Individual;
+import simulation.src.domain.IndividualState;
 
 import java.util.Collection;
 

@@ -1,8 +1,8 @@
-package simulation.domain.states.vulnerable_states.infected_states;
+package simulation.src.domain.states.vulnerable_states.infected_states;
 
-import simulation.domain.Individual;
-import simulation.domain.IndividualState;
-import simulation.domain.states.vulnerable_states.InfectedIndividual;
+import simulation.src.domain.Individual;
+import simulation.src.domain.IndividualState;
+import simulation.src.domain.states.vulnerable_states.InfectedIndividual;
 
 import java.util.Collection;
 

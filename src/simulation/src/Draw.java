@@ -1,4 +1,4 @@
-package simulation;
+package simulation.src;
 
 import java.util.SplittableRandom;
 
