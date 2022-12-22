@@ -1,6 +1,6 @@
-package simulation.src.domain;
+package simulation.domain;
 
-import simulation.src.domain.states.VulnerableIndividual;
+import simulation.domain.states.VulnerableIndividual;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package simulation.src.domain;
+package simulation.domain;
 
 import lombok.Data;
 

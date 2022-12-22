@@ -1,7 +1,7 @@
-package simulation.src;
+package simulation;
 
-import simulation.src.domain.Coordinates;
-import simulation.src.domain.Individual;
+import simulation.domain.Coordinates;
+import simulation.domain.Individual;
 
 import java.util.Collection;
 import java.util.List;
