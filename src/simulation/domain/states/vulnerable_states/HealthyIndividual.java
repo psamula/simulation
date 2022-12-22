@@ -17,10 +17,10 @@ public class HealthyIndividual implements IndividualState {
             return;
         }
         if (Draw.draw(50)) {
-            victim.processInteraction(new SymptomlessIndividual());
+            victim.processInteraction(new SymptomlessIndividual(victim));
             return;
         }
-        victim.processInteraction(new SymptomaticIndividual());
+        victim.processInteraction(new SymptomaticIndividual(victim));
     }
 
     @Override

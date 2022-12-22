@@ -10,6 +10,10 @@ import java.util.Collection;
 public class SymptomlessIndividual extends InfectedIndividual {
     private int probabilityOfInfecting = 50;
 
+    public SymptomlessIndividual(Individual individual) {
+        super(individual);
+    }
+
     @Override
     public void infect(Individual victim) {
         if (!Draw.draw(this.probabilityOfInfecting)) {
