@@ -1,6 +1,9 @@
 package simulation.domain;
 
+import simulation.domain.states.InvulnerableIndividual;
 import simulation.domain.states.VulnerableIndividual;
+import simulation.domain.states.vulnerable_states.HealthyIndividual;
+import simulation.domain.states.vulnerable_states.InfectedIndividual;
 
 import java.util.Collection;
 
@@ -12,8 +15,26 @@ public class Individual {
     private IndividualState state;
 
 
+    public Individual(String stype) {
+        if (stype.equals("impostor")) {
+            var myState = new VulnerableIndividual(this);
+            myState.setSubstate(new InfectedIndividual(this));
+            this.state = myState; //init state
+        } else if (stype.equals("immune")) {
+            var myState = new InvulnerableIndividual(this);
+            this.setState(myState);
+        }
+        else {
+            var myState = new VulnerableIndividual(this);
+            myState.setSubstate(new HealthyIndividual(this));
+            this.state = myState; //init state
+        }
+    }
+
     public Individual() {
-        this.state = new VulnerableIndividual(this);
+        var myState = new VulnerableIndividual(this);
+        myState.setSubstate(new HealthyIndividual(this));
+        this.state = myState; //init state
     }
 
     public IndividualState getState() {
@@ -49,5 +70,8 @@ public class Individual {
 
     public void processInteraction(IndividualState proposedState) {
         this.state.processInteraction(proposedState);
+    }
+    public void printState() {
+        this.state.printState();
     }
 }

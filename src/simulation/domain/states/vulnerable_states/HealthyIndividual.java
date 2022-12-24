@@ -1,34 +1,41 @@
 package simulation.domain.states.vulnerable_states;
 
-import simulation.Draw;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import simulation.domain.Individual;
 import simulation.domain.IndividualState;
-import simulation.domain.states.vulnerable_states.infected_states.SymptomaticIndividual;
-import simulation.domain.states.vulnerable_states.infected_states.SymptomlessIndividual;
 
 import java.util.Collection;
-
+@Getter
+@Setter
+@ToString
 public class HealthyIndividual implements IndividualState {
     private int probabilityOfInfecting = 0;
-    @Override
-    public void infect(Individual victim) {
-        if (!Draw.draw(this.probabilityOfInfecting)) {
-            return;
-        }
-        if (Draw.draw(50)) {
-            victim.processInteraction(new SymptomlessIndividual(victim));
-            return;
-        }
-        victim.processInteraction(new SymptomaticIndividual(victim));
+    private Individual individual;
+
+    public HealthyIndividual(Individual individual) {
+        this.individual = individual;
     }
 
     @Override
-    public IndividualState processInteraction(IndividualState proposedState) {
-        return
+    public void infect(Individual victim) {
+        ;
+    }
+
+    @Override
+    public void processInteraction(IndividualState proposedState) {
+        this.individual.setState(proposedState);
     }
 
     @Override
     public void initiateInteraction(Collection<Individual> nearbyIndividuals) {
-        nearbyIndividuals.stream().forEach(otherInd -> );
+        ;
+    }
+    public void heal() {
+        ;
+    }
+    public void printState() {
+        System.out.println(this);
     }
 }

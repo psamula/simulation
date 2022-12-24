@@ -4,6 +4,11 @@ import java.util.Collection;
 
 public interface IndividualState {
     void infect(Individual individual);
-    IndividualState processInteraction(IndividualState proposedState);
+    void processInteraction(IndividualState proposedState);
     void initiateInteraction(Collection<Individual> nearbyIndividuals);
+    void heal();
+
+    void printState();
+
+//    void setSubstate(IndividualState individualState;
 }

@@ -1,31 +1,55 @@
 package simulation.domain.states.vulnerable_states;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import simulation.Draw;
 import simulation.domain.Individual;
 import simulation.domain.IndividualState;
 import simulation.domain.states.VulnerableIndividual;
+import simulation.domain.states.vulnerable_states.infected_states.SymptomaticIndividual;
+import simulation.domain.states.vulnerable_states.infected_states.SymptomlessIndividual;
 
 import java.util.Collection;
-
-public class InfectedIndividual extends VulnerableIndividual {
+@Getter
+@Setter
+@ToString
+public class InfectedIndividual implements IndividualState {
     boolean immune = true;
-    public InfectedIndividual substate;
+    public IndividualState substate;
+//    public Individual getIndividual() {
+//        //return super.getIndividual();
+//    }
 
     public InfectedIndividual(Individual individual) {
-        super(individual);
+        //super(individual);
+//        this.individual = individual;
+        if (Draw.draw(50)) {
+            this.substate = new SymptomaticIndividual(individual);
+        } else {
+            this.substate = new SymptomlessIndividual(individual);
+        }
     }
-
     @Override
     public void infect(Individual individual) {
         this.substate.infect(individual);
     }
 
     @Override
-    public IndividualState processInteraction(IndividualState proposedState) {
-        super.processInteraction(proposedState);
+    public void processInteraction(IndividualState proposedState) {
+        this.substate.processInteraction(proposedState);
     }
 
     @Override
     public void initiateInteraction(Collection<Individual> nearbyIndividuals) {
-        super.initiateInteraction(nearbyIndividuals);
+        this.substate.initiateInteraction(nearbyIndividuals);
+    }
+
+    @Override
+    public void heal() {
+        this.substate.heal();
+    }
+    public void printState() {
+        this.substate.printState();
     }
 }
