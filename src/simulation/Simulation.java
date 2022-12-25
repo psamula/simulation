@@ -23,7 +23,7 @@ public class Simulation {
     private List<Individual> individuals = new ArrayList<>();
 
     public void fillIndividuals(INIT_SCENARIO scenario) {
-        spawnInfectedIndividuals(4);
+        spawnInfectedIndividuals(7);
         switch (scenario) {
             case ALL_VULNERABLE -> {
                 for (int i = 0; i < AMOUNT_OF_INDIVIDUALS; i++) {
@@ -31,10 +31,10 @@ public class Simulation {
                 }
             }
             case SOME_INVULNERABLE -> {
-                var impostor = new Individual(INIT_STATE.INFECTED);
-                var impostor2 = new Individual(INIT_STATE.INFECTED);
-                var impostor3 = new Individual(INIT_STATE.INFECTED);
-                var impostor4 = new Individual(INIT_STATE.INFECTED);
+                var impostor = new Individual(INIT_STATE.INVULNERABLE);
+                var impostor2 = new Individual(INIT_STATE.INVULNERABLE);
+                var impostor3 = new Individual(INIT_STATE.INVULNERABLE);
+                var impostor4 = new Individual(INIT_STATE.INVULNERABLE);
                 for (int i = 0; i < AMOUNT_OF_INDIVIDUALS - 4; i++) {
                     this.individuals.add(new Individual(INIT_STATE.VULNERABLE));
                 }
