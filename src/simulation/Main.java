@@ -1,14 +1,10 @@
 package simulation;
 
-import simulation.domain.Individual;
+import simulation.init.INIT_SCENARIO;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Simulation simulation = new Simulation();
-        simulation.fillIndividuals();
-        simulation.globalInteract();
-        var x = simulation.getIndividuals();
-        x.stream()
-                .forEach(Individual::printState);
+        simulation.simulate(INIT_SCENARIO.SOME_INVULNERABLE);
     }
 }
