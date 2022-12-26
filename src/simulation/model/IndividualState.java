@@ -14,6 +14,8 @@ public interface IndividualState {
     void printState();
     void move();
     Coordinates getCoordinates();
+    Individual getIndividual();
+    IndividualState clone();
     void setCoordinates(Coordinates coordinates);
 //    void setSubstate(IndividualState individualState;
 }

@@ -3,6 +3,7 @@ package simulation.model.states.vulnerable_states;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import simulation.init.INIT_STATE;
 import simulation.utils.Draw;
 import simulation.model.Individual;
 import simulation.model.IndividualState;
@@ -67,7 +68,14 @@ public class HealthyIndividual implements IndividualState {
     public void processNextCycle() {
         move();
     }
+    @Override
+    public IndividualState clone() {
+        var ind = new Individual(INIT_STATE.VULNERABLE);
+        var state = new HealthyIndividual(ind);
+        ind.setState(state);
+        return state;
 
+    }
     @Override
     public void processASimulationSecond(List<Individual> nearbyIndividuals) {
         ;

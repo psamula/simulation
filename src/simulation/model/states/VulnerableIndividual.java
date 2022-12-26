@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class VulnerableIndividual implements IndividualState {
+public class VulnerableIndividual implements IndividualState, Cloneable {
     boolean immune = false;
     private Individual individual;
     private IndividualState substate = new HealthyIndividual(this.individual); // initially
@@ -73,5 +73,9 @@ public class VulnerableIndividual implements IndividualState {
     public void setCoordinates(Coordinates coordinates) {
         this.substate.setCoordinates(coordinates);
 
+    }
+    @Override
+    public IndividualState clone() {
+        return this.substate.clone();
     }
 }

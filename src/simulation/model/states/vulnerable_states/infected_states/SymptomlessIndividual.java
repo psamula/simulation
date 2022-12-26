@@ -59,6 +59,7 @@ public class SymptomlessIndividual implements IndividualState {
         getIndividualsToPotentiallyInfect().stream()
                 .forEach(this::infect);
     }
+
     public void heal() {
         this.getIndividual().setState(new InvulnerableIndividual(this.getIndividual()));
     }
@@ -86,10 +87,12 @@ public class SymptomlessIndividual implements IndividualState {
         }
 
     }
+
     @Override
     public Coordinates getCoordinates() {
         return this.coordinates;
     }
+
     @Override
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -98,6 +101,7 @@ public class SymptomlessIndividual implements IndividualState {
     public void printState() {
         System.out.println(this);
     }
+
     @Override
     public void processNextCycle() {
         move();
@@ -113,10 +117,11 @@ public class SymptomlessIndividual implements IndividualState {
         var lastIndex = this.encountersHistory.size() - 1;
         return flattenedOccurrenceSet.stream()
                 .filter(ind -> this.encountersHistory.get(lastIndex).contains(ind)
-                    && this.encountersHistory.get(lastIndex - 1).contains(ind)
+                        && this.encountersHistory.get(lastIndex - 1).contains(ind)
                         && this.encountersHistory.get(lastIndex - 2).contains(ind))
                 .collect(Collectors.toList());
     }
+
     public void processASimulationSecond(List<Individual> nearbyIndividuals) {
         if (infectedForSeconds == 0) {
             heal();
@@ -125,10 +130,27 @@ public class SymptomlessIndividual implements IndividualState {
         updateEncountersHistory(nearbyIndividuals);
         this.initiateInteraction();
     }
+
     public void updateEncountersHistory(List<Individual> nearbyIndividuals) {
         this.encountersHistory.add(nearbyIndividuals);
         if (this.encountersHistory.size() == 4) {
             this.encountersHistory.pop();
         }
+    }
+
+    @Override
+    public IndividualState clone() {
+        var ind = new Individual();
+        var state = new SymptomlessIndividual(ind);
+        state.setCoordinates(new Coordinates(this.coordinates.getX(), this.coordinates.getY()));
+        state.setEncountersHistory(copyEncountersHistory());
+        state.setInfectedForSeconds(this.getInfectedForSeconds());
+        ind.setState(state);
+
+        return state;
+    }
+
+    public LinkedList<List<Individual>> copyEncountersHistory() {
+        return new LinkedList<List<Individual>>(this.encountersHistory);
     }
 }

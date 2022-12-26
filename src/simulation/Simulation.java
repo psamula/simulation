@@ -5,6 +5,8 @@ import lombok.Setter;
 import simulation.init.INIT_SCENARIO;
 import simulation.init.INIT_STATE;
 import simulation.init.SIMULATION_CONSTANTS;
+import simulation.memento.Caretaker;
+import simulation.memento.Memento;
 import simulation.model.Individual;
 import simulation.utils.Draw;
 import simulation.utils.SimulationPrinter;
@@ -20,6 +22,7 @@ public class Simulation {
     public static final double RANGE = SIMULATION_CONSTANTS.RANGE;
     public static final double N = SIMULATION_CONSTANTS.N;
     public static final double M = SIMULATION_CONSTANTS.M;
+    public int time;
     private List<Individual> individuals = new ArrayList<>();
 
     public void fillIndividuals(INIT_SCENARIO scenario) {
@@ -54,6 +57,11 @@ public class Simulation {
             });
         }
     }
+    public Memento saveMemento() {
+        return new Memento(this.individuals.stream()
+                .map(ind -> ind.clone())
+                .collect(Collectors.toList()), this.time);
+    }
 
 
     public List<Individual> getNearbyIndividuals(Individual individual) {
@@ -81,8 +89,10 @@ public class Simulation {
                 scanForOutsiders();
             }
             if (Draw.drawSpawningOrNot(60)) {
-                spawnInfectedIndividuals(1);
+                //spawnInfectedIndividuals(1);
             }
+            time = i;
+            var mem = saveMemento();
             TimeUnit.SECONDS.sleep(1);
         }
     }
@@ -97,6 +107,23 @@ public class Simulation {
     public void spawnInfectedIndividuals(int amount) {
         for (int i = 0; i < amount; i++) {
             this.individuals.add(new Individual(INIT_STATE.INFECTED));
+        }
+    }
+    public void loadFromMemento(Memento memento) throws InterruptedException {
+        this.individuals = memento.getIndividuals();
+        int t = memento.getT();
+
+        for (int i = t;; i++) {
+            this.individuals.forEach(ind -> ind.processASimulationSecond(getNearbyIndividuals(ind)));
+            SimulationPrinter.printSimulationState(this.individuals);
+            for (int j = 0; j < 25; j++) {
+                this.individuals.forEach(Individual::processNextCycle);
+                scanForOutsiders();
+            }
+            if (Draw.drawSpawningOrNot(60)) {
+                spawnInfectedIndividuals(1);
+            }
+            TimeUnit.SECONDS.sleep(1);
         }
     }
 }

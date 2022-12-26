@@ -98,4 +98,8 @@ public class Individual {
     public void processASimulationSecond(List<Individual> nearbyIndividuals) {
         this.state.processASimulationSecond(nearbyIndividuals);
     }
+    public Individual clone() {
+        var state = this.state.clone();
+        return state.getIndividual();
+    }
 }

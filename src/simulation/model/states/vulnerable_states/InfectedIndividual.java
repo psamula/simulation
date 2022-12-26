@@ -32,6 +32,12 @@ public class InfectedIndividual implements IndividualState {
     public Coordinates getCoordinates() {
         return this.coordinates;
     }
+
+    @Override
+    public Individual getIndividual() {
+        return this.substate.getIndividual();
+    }
+
     @Override
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -71,5 +77,9 @@ public class InfectedIndividual implements IndividualState {
     @Override
     public void move() {
         this.substate.move();
+    }
+    @Override
+    public IndividualState clone() {
+        return this.substate.clone();
     }
 }

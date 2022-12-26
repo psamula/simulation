@@ -3,6 +3,7 @@ package simulation.model.states;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import simulation.init.INIT_STATE;
 import simulation.utils.Draw;
 import simulation.init.SIMULATION_CONSTANTS;
 import simulation.model.Individual;
@@ -81,6 +82,15 @@ public class InvulnerableIndividual implements IndividualState {
             this.coordinates.setY((spawnCoords.getY()));
         }
 
+    }
+    @Override
+    public IndividualState clone() {
+        var ind = new Individual(INIT_STATE.INVULNERABLE);
+        var state = new InvulnerableIndividual(ind);
+        state.setCoordinates(new Coordinates(this.coordinates.getX(), this.coordinates.getY()));
+        state.setIndividual(ind);
+        ind.setState(state);
+        return state;
     }
 
     @Override
