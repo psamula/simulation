@@ -4,12 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import simulation.init.INIT_STATE;
+import simulation.model.states.vulnerable_states.infected_states.SymptomlessIndividual;
 import simulation.utils.Draw;
 import simulation.init.SIMULATION_CONSTANTS;
 import simulation.model.Individual;
 import simulation.model.IndividualState;
 import simulation.model.vectors.Coordinates;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -96,5 +98,8 @@ public class InvulnerableIndividual implements IndividualState {
     @Override
     public void processASimulationSecond(List<Individual> nearbyIndividuals) {
         ;
+    }
+    public IndividualState shallowClone() {
+        return this.clone();
     }
 }

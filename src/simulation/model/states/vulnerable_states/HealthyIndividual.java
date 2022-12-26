@@ -80,4 +80,8 @@ public class HealthyIndividual implements IndividualState {
     public void processASimulationSecond(List<Individual> nearbyIndividuals) {
         ;
     }
+    @Override
+    public IndividualState shallowClone() {
+        return this.clone();
+    }
 }

@@ -16,6 +16,7 @@ public interface IndividualState {
     Coordinates getCoordinates();
     Individual getIndividual();
     IndividualState clone();
+    IndividualState shallowClone();
     void setCoordinates(Coordinates coordinates);
 //    void setSubstate(IndividualState individualState;
 }

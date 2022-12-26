@@ -102,4 +102,8 @@ public class Individual {
         var state = this.state.clone();
         return state.getIndividual();
     }
+    public Individual shallowClone() {
+        var state = this.state.shallowClone();
+        return state.getIndividual();
+    }
 }

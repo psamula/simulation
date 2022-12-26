@@ -3,6 +3,7 @@ package simulation.model.states.vulnerable_states.infected_states;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import simulation.init.INIT_STATE;
 import simulation.utils.Draw;
 import simulation.init.SIMULATION_CONSTANTS;
 import simulation.model.Individual;
@@ -152,5 +153,15 @@ public class SymptomlessIndividual implements IndividualState {
 
     public LinkedList<List<Individual>> copyEncountersHistory() {
         return new LinkedList<List<Individual>>(this.encountersHistory);
+    }
+    public IndividualState shallowClone() {
+        var ind = new Individual(INIT_STATE.INFECTED);
+        var state = new SymptomlessIndividual(ind);
+        state.setCoordinates(new Coordinates(this.coordinates.getX(), this.coordinates.getY()));
+        state.setEncountersHistory(new LinkedList<List<Individual>>());
+        state.setInfectedForSeconds(this.getInfectedForSeconds());
+        ind.setState(state);
+
+        return state;
     }
 }

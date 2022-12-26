@@ -144,6 +144,24 @@ public class SymptomaticIndividual implements IndividualState {
         return state;
     }
     public LinkedList<List<Individual>> copyEncountersHistory() {
-        return new LinkedList<List<Individual>>(this.encountersHistory);
+        var listOfLists = new LinkedList<List<Individual>>();
+
+        this.encountersHistory.stream()
+                .forEach(li -> {
+                    listOfLists.add(li.stream()
+                            .map(ind -> ind.shallowClone())
+                            .collect(Collectors.toList()));
+                });
+        return listOfLists;
+    }
+    public IndividualState shallowClone() {
+        var ind = new Individual(INIT_STATE.INFECTED);
+        var state = new SymptomlessIndividual(ind);
+        state.setCoordinates(new Coordinates(this.coordinates.getX(), this.coordinates.getY()));
+        state.setEncountersHistory(new LinkedList<List<Individual>>());
+        state.setInfectedForSeconds(this.getInfectedForSeconds());
+        ind.setState(state);
+
+        return state;
     }
 }

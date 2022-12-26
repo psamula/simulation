@@ -3,11 +3,14 @@ package simulation.model.states;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import simulation.init.INIT_STATE;
 import simulation.model.Individual;
 import simulation.model.IndividualState;
 import simulation.model.states.vulnerable_states.HealthyIndividual;
+import simulation.model.states.vulnerable_states.infected_states.SymptomlessIndividual;
 import simulation.model.vectors.Coordinates;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -77,5 +80,9 @@ public class VulnerableIndividual implements IndividualState, Cloneable {
     @Override
     public IndividualState clone() {
         return this.substate.clone();
+    }
+    @Override
+    public IndividualState shallowClone() {
+        return this.substate.shallowClone();
     }
 }
