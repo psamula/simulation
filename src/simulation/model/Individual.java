@@ -15,9 +15,6 @@ import java.util.List;
 
 public class Individual {
 
-
-    private double x;
-    private double y;
     private IndividualState state;
 
 
@@ -41,8 +38,6 @@ public class Individual {
                 this.state = myState3; //init state
                 break;
         }
-        this.x = this.state.getCoordinates().getX();
-        this.y = this.state.getCoordinates().getY();
     }
 
     public Individual() {

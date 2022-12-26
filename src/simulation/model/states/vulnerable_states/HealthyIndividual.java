@@ -72,6 +72,7 @@ public class HealthyIndividual implements IndividualState {
     public IndividualState clone() {
         var ind = new Individual(INIT_STATE.VULNERABLE);
         var state = new HealthyIndividual(ind);
+        state.setCoordinates(new Coordinates(this.coordinates.getX(), this.coordinates.getY()));
         ind.setState(state);
         return state;
 

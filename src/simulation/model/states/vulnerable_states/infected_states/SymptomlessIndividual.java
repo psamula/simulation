@@ -35,7 +35,6 @@ public class SymptomlessIndividual implements IndividualState {
         this.individual = individual;
         this.infectedForSeconds = Draw.drawDurationOfInfection(20, 30);
         this.encountersHistory = new LinkedList<>();
-        this.coordinates = new Coordinates(0.0, 0.0);
     }
 
 

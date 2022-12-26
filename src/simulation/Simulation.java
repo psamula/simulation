@@ -92,7 +92,7 @@ public class Simulation {
                 scanForOutsiders();
             }
             if (Draw.drawSpawningOrNot(60)) {
-                //spawnInfectedIndividuals(1);
+                spawnInfectedIndividuals(1);
             }
             time = i;
             var mem = saveMemento();
@@ -109,7 +109,9 @@ public class Simulation {
     }
     public void spawnInfectedIndividuals(int amount) {
         for (int i = 0; i < amount; i++) {
-            this.individuals.add(new Individual(INIT_STATE.INFECTED));
+            var ind = new Individual(INIT_STATE.INFECTED);
+            spawn(ind);
+            this.individuals.add(ind);
         }
     }
     public void loadFromMemento(Memento memento) throws InterruptedException {
