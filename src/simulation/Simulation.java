@@ -23,6 +23,7 @@ public class Simulation {
     public static final double N = SIMULATION_CONSTANTS.N;
     public static final double M = SIMULATION_CONSTANTS.M;
     public int time;
+    Caretaker caretaker = new Caretaker();
     private List<Individual> individuals = new ArrayList<>();
 
     public void fillIndividuals(INIT_SCENARIO scenario) {
@@ -58,9 +59,11 @@ public class Simulation {
         }
     }
     public Memento saveMemento() {
-        return new Memento(this.individuals.stream()
+        var newMemento = new Memento(this.individuals.stream()
                 .map(ind -> ind.clone())
                 .collect(Collectors.toList()), this.time);
+        caretaker.add(newMemento);
+        return newMemento;
     }
 
 

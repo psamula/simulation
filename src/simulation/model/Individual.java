@@ -19,7 +19,6 @@ public class Individual {
     private double x;
     private double y;
     private IndividualState state;
-    private Coordinates coordinates;
 
 
     public Individual(INIT_STATE scenario) {
@@ -42,7 +41,8 @@ public class Individual {
                 this.state = myState3; //init state
                 break;
         }
-        this.coordinates = new Coordinates(0.0, 0.0);
+        this.x = this.state.getCoordinates().getX();
+        this.y = this.state.getCoordinates().getY();
     }
 
     public Individual() {
@@ -62,21 +62,6 @@ public class Individual {
     }
     public void setCoordinates(Coordinates coordinates) {
         this.state.setCoordinates(coordinates);
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-    public double getX() {
-        return x;
     }
 
     public void initiateInteraction(List<Individual> nearbyIndividuals) {

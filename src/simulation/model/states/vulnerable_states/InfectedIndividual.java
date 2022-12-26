@@ -42,7 +42,7 @@ public class InfectedIndividual implements IndividualState {
 
     @Override
     public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+        this.substate.setCoordinates(coordinates);
     }
     @Override
     public void infect(Individual individual) {
